@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 import BreweryCard from "../brewery-card/brewery-card.component";
+import CityTable from "../city-table/city-table.component";
 
 const Asheville = () => {
     const [ashevilleBreweries, setAshevilleBreweries] = useState([]);
@@ -15,14 +16,7 @@ const Asheville = () => {
     }, []);
 
     return (
-        <div>
-            <h1>Asheville Breweries</h1>
-            {
-                ashevilleBreweries.map(brewery => (
-                    <BreweryCard key={brewery.id} brewery={brewery} />
-                ))
-            }
-        </div>
+        <CityTable city='Asheville' breweries={ashevilleBreweries} />
     )
 }
 
