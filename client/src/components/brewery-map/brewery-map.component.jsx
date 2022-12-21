@@ -9,7 +9,7 @@ const BreweryMap = ({lat, lng, name}) => {
       lat,
       lng
     },
-    zoom: 11
+    zoom: 15
   };
 
   return (

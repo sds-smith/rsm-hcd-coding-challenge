@@ -1,10 +1,11 @@
+import { Link } from "react-router-dom";
 
 const TableRow = ({brewery}) => {
-    const {name, brewery_type, street, city, state, postal_code, website_url} = brewery;
+    const {id, name, brewery_type, street, city, state, postal_code, website_url} = brewery;
 
     return (
         <tr >
-            <td>{name}</td>
+            <td><Link to={`/${id}`}>{name}</Link></td>
             <td>{brewery_type}</td>
             <td>{`${street} ${city}, ${state} ${postal_code}`}</td>
             <td>
