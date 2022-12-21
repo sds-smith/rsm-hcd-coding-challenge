@@ -1,7 +1,7 @@
 const {getAllBreweries} = require('../../models/breweries/breweries.model');
 
-function httpGetAllBreweries() {
-    return getAllBreweries();
+async function httpGetAllBreweries(req, res) {
+    return res.status(200).json(await getAllBreweries());
 };
 
 module.exports = {
