@@ -1,8 +1,11 @@
 
+import Asheville from "./components/asheville/asheville.component"
 
 const App = () => {
     return (
-        <div>App</div>
+        <div>
+            <Asheville />
+        </div>
     )
 }
 

@@ -7,7 +7,7 @@ const {
 
 const breweriesRouter = express.Router();
 
-breweriesRouter.use('/sandiego', httpGetAshevilleBreweries)
+breweriesRouter.use('/asheville', httpGetAshevilleBreweries)
 breweriesRouter.use('/', httpGetAllBreweries)
 
 module.exports = breweriesRouter;
