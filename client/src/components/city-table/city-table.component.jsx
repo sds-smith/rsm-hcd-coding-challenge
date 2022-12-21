@@ -7,18 +7,23 @@ const CityTable = ({city, breweries}) => {
     return (
         <table>
             <caption>{`${city} Breweries`}</caption>
-            <tr>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Address</th>
-                <th>Website</th>
-            </tr>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Address</th>
+                    <th>Website</th>
+                </tr>
+            </thead>
+            <tbody>
             { 
                 breweries.map(brewery => (
                         <TableRow key={brewery.id} brewery={brewery} />
                     ) 
                 )
             }
+            </tbody>
+
         </table>
     )
 }

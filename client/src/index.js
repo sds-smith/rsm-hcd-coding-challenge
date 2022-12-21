@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import {BrowserRouter} from "react-router-dom";
+import { ClientProvider } from "./context/client.context.jsx";
 import { BreweryProvider } from "./context/brewery.context.jsx";
 
 import App from './App.jsx'
@@ -10,8 +11,11 @@ const root = ReactDOM.createRoot(
 );
 root.render(
     <BrowserRouter>
-        <BreweryProvider>
-            <App />
-        </BreweryProvider>
+        <ClientProvider>
+            <BreweryProvider>
+                <App />
+            </BreweryProvider>
+        </ClientProvider>
+
     </BrowserRouter>
 )

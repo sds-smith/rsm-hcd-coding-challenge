@@ -4,6 +4,7 @@ export const BreweryContext = createContext();
 
 export const BreweryProvider = ({children}) => {
     const [ashevilleBreweries, setAshevilleBreweries] = useState([]);
+    const [breweriesNearMe, setBreweriesNearMe] = useState([]);
 
     const hasBreweries = (array) => {
         return array.length > 0
@@ -12,6 +13,8 @@ export const BreweryProvider = ({children}) => {
     const value = {
         ashevilleBreweries,
         setAshevilleBreweries,
+        breweriesNearMe,
+        setBreweriesNearMe,
         hasBreweries
     }
 
