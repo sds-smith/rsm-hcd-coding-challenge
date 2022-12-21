@@ -1,16 +1,14 @@
+import BreweryMap from "../brewery-map/brewery-map.component";
 
 const BreweryCard = ({brewery}) => {
-    const {name, brewery_type, street, city, state, postal_code, website_url} = brewery;
+    const {name, street, city, state, postal_code, latitude, longitude} = brewery;
 
     return (
         <div >
             <h2>{name}</h2>
-            <p>{brewery_type}</p>
             <p>{street}</p>
-            <p>{city}</p>
-            <p>{state}</p>
-            <p>{postal_code}</p>
-            <a href={website_url} target='_blank' rel='no-referrer'>{website_url}</a>
+            <p>{`${city}, ${state} ${postal_code}`}</p>
+            <BreweryMap lat={Number(latitude)} lng={Number(longitude)} name={name} />
         </div>
     )
 }

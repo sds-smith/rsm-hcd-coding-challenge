@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-import BreweryCard from "../brewery-card/brewery-card.component";
 import CityTable from "../city-table/city-table.component";
 
 const Asheville = () => {
