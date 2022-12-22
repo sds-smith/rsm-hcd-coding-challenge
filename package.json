@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "server": "npm start --prefix server",
+    "client": "npm start --prefix client",
+    "start": "npm run server & npm run client",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

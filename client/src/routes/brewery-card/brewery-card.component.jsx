@@ -3,6 +3,8 @@ import { useParams, Link } from 'react-router-dom';
 import BreweryMap from '../../components/brewery-map/brewery-map.component';
 import { BreweryContext } from '../../context/brewery.context';
 
+import './brewery-card.styles.scss';
+
 const BreweryCard = () => {
     const params = useParams();
     const breweryIdToFind = params.breweryId;
@@ -12,12 +14,14 @@ const BreweryCard = () => {
     const {name, street, city, state, postal_code, latitude, longitude} = brewery;
 
     return (
-        <div >
+        <div className='breweryCardContainer' >
             <Link to={'/'} >{`<---Back`}</Link>
             <h2>{name}</h2>
             <p>{street}</p>
             <p>{`${city}, ${state} ${postal_code}`}</p>
-            <BreweryMap lat={Number(latitude)} lng={Number(longitude)} name={name} />
+            <div className='breweryMapWrapper'>
+                <BreweryMap lat={Number(latitude)} lng={Number(longitude)} name={name} />
+            </div>
         </div>
     )
 }

@@ -1,6 +1,7 @@
 import {useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
+import Banner from "../../components/banner/banner.component";
 import Asheville from "../../components/asheville/asheville.component";
 import useTrackLocation from '../../hooks/use-track-location';
 import { BreweryContext } from "../../context/brewery.context";
@@ -44,8 +45,9 @@ const Home = () => {
 
     return (
         <div>
-            <Asheville />
-            <button onClick={onClick} >Find Breweries Near Me</button>
+          <Banner />
+          <Asheville />
+          <button onClick={onClick} >Find Breweries Near Me</button>
         </div>
     )
 }
