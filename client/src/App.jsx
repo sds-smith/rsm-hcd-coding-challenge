@@ -10,7 +10,7 @@ const App = () => {
     return (
         <Routes>
             <Route path='/' element={<Navigation />} >
-                <Route path='home' element={<Home />} />
+                <Route index element={<Home />} />
                 <Route exact path='breweries-near-me' element={<BreweriesNearMe />} />
                 <Route path='/:breweryId' element={<BreweryPage />} />
             </Route>

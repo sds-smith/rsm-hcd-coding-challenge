@@ -26,7 +26,6 @@ const CityTable = (props) => {
         <div>
             <h2>{props.city ? `${city} Breweries` : `Breweries near ${city}`}</h2>
             <table>
-                {/* <caption>{props.city ? `${city} Breweries` : `Breweries near ${city}`}</caption> */}
                 <thead>
                     <tr>
                         <th>Name (click a brewery name to view more)</th>
