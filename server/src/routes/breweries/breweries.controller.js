@@ -1,15 +1,10 @@
 const {
-    getAllBreweries,
-    getAshevilleBreweries,
+    getDefaultBreweries,
     getBreweriesNearMe
 } = require('../../models/breweries/breweries.model');
 
-async function httpGetAllBreweries(req, res) {
-    return res.status(200).json(await getAllBreweries());
-};
-
-async function httpGetAshevilleBreweries(req, res) {
-    return res.status(200).json(await getAshevilleBreweries())
+async function httpGetDefaultBreweries(req, res) {
+    return res.status(200).json(await getDefaultBreweries())
 };
 
 async function httpGetBreweriesNearMe(req, res) {
@@ -18,7 +13,6 @@ async function httpGetBreweriesNearMe(req, res) {
 };
 
 module.exports = {
-    httpGetAllBreweries,
-    httpGetAshevilleBreweries,
+    httpGetDefaultBreweries,
     httpGetBreweriesNearMe
 };
