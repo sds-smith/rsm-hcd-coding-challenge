@@ -44,7 +44,7 @@ const Home = () => {
 
     return (
         <div>
-          <Banner />
+          <h1>Home</h1>
           <Asheville />
           <button onClick={onClick} >Find Breweries Near Me</button>
         </div>
