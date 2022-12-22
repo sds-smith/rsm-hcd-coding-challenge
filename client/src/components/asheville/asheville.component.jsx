@@ -18,7 +18,7 @@ const Asheville = () => {
     }, [ashevilleBreweries]);
 
     return (
-        <CityTable city='Asheville' breweries={ashevilleBreweries} />
+        <CityTable city='Asheville'/>
     )
 }
 
