@@ -1,8 +1,10 @@
 import { useState, useEffect, useContext } from "react";
-import axios from 'axios';
+
 import CityTable from "../../components/city-table/city-table.component";
+
 import { BreweryContext } from "../../context/brewery.context";
 import { ClientContext } from "../../context/client.context";
+import { httpGetMyLocalBreweries } from "../../utils/http/requests";
 
 const BreweriesNearMe = () => {
     const [breweriesError, setBreweriesError] = useState('');
@@ -14,14 +16,13 @@ const BreweriesNearMe = () => {
         if (!hasBreweries(breweriesNearMe)) {
             const getMyLocalBreweries = async () => {
               if (clientLatLong) {
-                    try {
-                        const response = await axios.get(`http://localhost:8000/v1/breweries/by-dist?latLong=${clientLatLong}`)
-                        const breweries = await response.data
-                        setBreweriesNearMe(breweries)
-                        setBreweriesError('')
-                      } catch (err) {
-                        setBreweriesError(err.message)
-                      }
+                try {
+                   const breweries = await httpGetMyLocalBreweries(clientLatLong);
+                   setBreweriesNearMe(breweries)
+                   setBreweriesError('')
+                } catch (err) {
+                  setBreweriesError(err.message)
+                }
               }
             }
             getMyLocalBreweries()

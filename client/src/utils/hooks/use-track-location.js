@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { ClientContext } from "../context/client.context";
+import { ClientContext } from "../../context/client.context";
 
 const useTrackLocation = () => {
     const [locationErrorMsg, setLocationErrorMsg] = useState('');

@@ -1,8 +1,8 @@
 import {useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
 import BreweryMap from '../brewery-map/brewery-map.component';
 import { BreweryContext } from '../../context/brewery.context';
+import {httpGetBreweryLatLong} from '../../utils/http/requests'
 
 import './brewery-card.styles.scss';
 
@@ -19,10 +19,9 @@ const BreweryCard = () => {
         const brewery = ashevilleBreweries.find(breweryToFind => breweryToFind.id === breweryIdToFind) ||
                         breweriesNearMe.find(breweryToFind => breweryToFind.id === breweryIdToFind);
         if (!brewery.latitude || !brewery.longitude) {
-            console.log('Getting coords...')
             const getGeoCode = async () => {
                 try {
-                    const geoResponse = await axios.get(`http://localhost:8000/v1/breweries/get_geocode?postal_code=${brewery.postal_code}`)
+                    const geoResponse = await httpGetBreweryLatLong(brewery.postal_code)
                     setCenter(geoResponse.data)
                 } catch(err) {
                     console.log(err.message)

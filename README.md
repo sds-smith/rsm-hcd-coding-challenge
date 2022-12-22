@@ -24,7 +24,7 @@ A brewery locator app built for the [RSM HCD Coding Challenge](https://github.co
 
  Within the list, the user is able to:
   * Click on any brewery name to be routed to an individual brewery card displaying location information, including an embedded instance of Google Maps showing the brewery's location. 
-  * Click on any brewery url to open the brewery's own website in a new window.
+  * Click on any brewery url to open the brewery's own website in a new tab.
 
  From any route in the App, the user will see a persistent header containing two navigation elements:
   * Beer mug icon - returns to the home page

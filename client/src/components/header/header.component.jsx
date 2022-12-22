@@ -2,7 +2,7 @@
 import { Link, useNavigate } from "react-router-dom";
 
 import BeerIcon from '../../assets/Beer-icon.png';
-import useTrackLocation from "../../hooks/use-track-location";
+import useTrackLocation from "../../utils/hooks/use-track-location";
 
 import './header.styles.scss'
 
