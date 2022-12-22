@@ -17,13 +17,14 @@ const CityTable = (props) => {
             setCity(props.city)
             setBreweries(ashevilleBreweries);
         } else {
+            setCity(breweriesNearMe[0].city)
             setBreweries(breweriesNearMe)
         }
     })
 
     return (
         <table>
-            <caption>{`${city} Breweries`}</caption>
+            <caption>{props.city ? `${city} Breweries` : `Breweries near ${city}`}</caption>
             <thead>
                 <tr>
                     <th>Name</th>

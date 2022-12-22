@@ -1,7 +1,7 @@
 import {useState, useEffect, useContext } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import BreweryMap from '../../components/brewery-map/brewery-map.component';
+import BreweryMap from '../brewery-map/brewery-map.component';
 import { BreweryContext } from '../../context/brewery.context';
 
 import './brewery-card.styles.scss';
@@ -40,7 +40,6 @@ const BreweryCard = () => {
 
     return (
         <div className='breweryCardContainer' >
-            <Link to={'/'} >{`<---Back`}</Link>
             <h2>{name}</h2>
             <p>{street}</p>
             <p>{`${city}, ${state} ${postal_code}`}</p>
