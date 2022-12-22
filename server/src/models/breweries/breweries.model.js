@@ -13,7 +13,7 @@ async function getAllBreweries() {
     } catch(err) {
         return err
     }
-}
+};
 
 async function getAshevilleBreweries() {
     try {
@@ -27,9 +27,24 @@ async function getAshevilleBreweries() {
         console.log(err.message)
         return err
     }
+};
+
+async function getBreweriesNearMe(latLong) {
+    try {
+        const response = await axios.get(`${OPEN_BREWERY_DB_BASE_URL}?by_distance=${latLong}`, { 
+            headers: { 
+                "Accept-Encoding": "gzip,deflate,compress"
+            }, 
+        });
+        return await response.data;
+    } catch(err) {
+        console.log(err.message)
+        return err
+    }
 }
 
 module.exports = {
     getAllBreweries,
-    getAshevilleBreweries
+    getAshevilleBreweries,
+    getBreweriesNearMe
 }

@@ -23,7 +23,7 @@ const Home = () => {
         const getMyLocalBreweries = async () => {
           if (clientLatLong) {
             try {
-              const response = await axios.get(`/v1/breweries/by-distance?latLong=${clientLatLong}&per_page=30`)
+              const response = await axios.get(`http://localhost:8000/v1/breweries/by-distance?latLong=${clientLatLong}`)
               const breweries = await response.data
               setBreweriesNearMe(breweries)
               setBreweriesError('')

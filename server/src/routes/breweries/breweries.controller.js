@@ -1,6 +1,7 @@
 const {
     getAllBreweries,
-    getAshevilleBreweries
+    getAshevilleBreweries,
+    getBreweriesNearMe
 } = require('../../models/breweries/breweries.model');
 
 async function httpGetAllBreweries(req, res) {
@@ -9,9 +10,15 @@ async function httpGetAllBreweries(req, res) {
 
 async function httpGetAshevilleBreweries(req, res) {
     return res.status(200).json(await getAshevilleBreweries())
-}
+};
+
+async function httpGetBreweriesNearMe(req, res) {
+    const {latLong} = req.query
+    return res.status(200).json(await getBreweriesNearMe(latLong))
+};
 
 module.exports = {
     httpGetAllBreweries,
-    httpGetAshevilleBreweries
+    httpGetAshevilleBreweries,
+    httpGetBreweriesNearMe
 };
