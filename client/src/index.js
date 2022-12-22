@@ -4,7 +4,7 @@ import {BrowserRouter} from "react-router-dom";
 import { ClientProvider } from "./context/client.context.jsx";
 import { BreweryProvider } from "./context/brewery.context.jsx";
 
-import App from './App.jsx'
+import App from './App.tsx'
 
 const root = ReactDOM.createRoot(
     document.getElementById("root")

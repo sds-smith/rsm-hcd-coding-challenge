@@ -1,4 +1,4 @@
-
+import React from 'react';
 import { Link, useNavigate } from "react-router-dom";
 
 import BeerIcon from '../../assets/Beer-icon.png';

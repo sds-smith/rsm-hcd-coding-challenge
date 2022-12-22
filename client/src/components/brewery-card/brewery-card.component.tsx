@@ -1,14 +1,39 @@
-import {useState, useEffect, useContext } from 'react';
+import React, {useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import BreweryMap from '../brewery-map/brewery-map.component';
 import { BreweryContext } from '../../context/brewery.context';
-import {httpGetBreweryLatLong} from '../../utils/http/requests'
+import {httpGetBreweryLatLong} from '../../utils/http/requests';
+
+import { BreweryType } from '../city-table/city-table.component';
 
 import './brewery-card.styles.scss';
 
+const defaultBrewery = {
+    id: '',
+    name: '',
+    brewery_type: '',
+    street: '',
+    city: '',
+    state: '',
+    postal_code: '',
+    website_url: '',
+    longitude: 0,
+    latitude: 0,
+}
+
+export type Center = {
+    lat: number,
+    lng: number
+}
+
+const defaultCenter = {
+    lat: 0,
+    lng: 0
+}
+
 const BreweryCard = () => {
-    const [brewery, setBrewery] = useState({});
-    const [center, setCenter] = useState({});
+    const [brewery, setBrewery] = useState<BreweryType>(defaultBrewery);
+    const [center, setCenter] = useState(defaultCenter);
     const params = useParams();
     const {ashevilleBreweries, breweriesNearMe} = useContext(BreweryContext);
  

@@ -11,7 +11,6 @@ const BreweryMap = ({center, name}) => {
   };
 
   return (
-    // Important! Always set the container height explicitly
     <div className='mapContainer' >
       <GoogleMapReact
         bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY }}
@@ -19,8 +18,8 @@ const BreweryMap = ({center, name}) => {
         defaultZoom={defaultProps.zoom}
       >
         <Marker
-          lat={center.lat}
-          lng={center.lng}
+          // lat={center.lat}
+          // lng={center.lng}
           text={name}
         />
       </GoogleMapReact>

@@ -1,4 +1,4 @@
-import { useEffect, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 
 import CityTable from "../city-table/city-table.component";
 import { BreweryContext } from "../../context/brewery.context";

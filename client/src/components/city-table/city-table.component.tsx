@@ -1,10 +1,23 @@
-import {useState, useEffect, useContext} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 
 import TableRow from '../table-row/table-row.component';
 
 import { BreweryContext } from '../../context/brewery.context';
 
-import './city-table.styles.scss'
+import './city-table.styles.scss';
+
+export type BreweryType = {
+    id: string,
+    name: string,
+    brewery_type: string,
+    street: string,
+    city: string,
+    state: string,
+    postal_code: string,
+    website_url: string,
+    longitude: Number,
+    latitude: Number,
+}
 
 const CityTable = (props) => {
     const [city, setCity] = useState('');
@@ -36,7 +49,7 @@ const CityTable = (props) => {
                 </thead>
                 <tbody>
                 { 
-                    breweries.map(brewery => (
+                    breweries.map((brewery: BreweryType )=> (
                             <TableRow key={brewery.id} brewery={brewery} />
                         ) 
                     )

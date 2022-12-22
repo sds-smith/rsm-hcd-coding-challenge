@@ -1,4 +1,4 @@
-
+import React from "react";
 import Asheville from "../../components/asheville/asheville.component";
 
 import './home.styles.scss'
