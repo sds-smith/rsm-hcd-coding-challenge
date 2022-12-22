@@ -3,12 +3,9 @@ import GoogleMapReact from 'google-map-react';
 
 const Marker = ({ text }) => <div style={{width: 'fit-content', backgroundColor: 'yellow', border: '5px solid black'}}>{text}</div>;
 
-const BreweryMap = ({lat, lng, name}) => {
+const BreweryMap = ({center, name}) => {
   const defaultProps = {
-    center: {
-      lat,
-      lng
-    },
+    center,
     zoom: 15
   };
 
@@ -21,8 +18,8 @@ const BreweryMap = ({lat, lng, name}) => {
         defaultZoom={defaultProps.zoom}
       >
         <Marker
-          lat={lat}
-          lng={lng}
+          lat={center.lat}
+          lng={center.lng}
           text={name}
         />
       </GoogleMapReact>
