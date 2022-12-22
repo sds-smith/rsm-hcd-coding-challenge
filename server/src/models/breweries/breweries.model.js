@@ -36,46 +36,59 @@ async function saveBrewery(brewery) {
 
 async function populateBreweriesData() {
     console.log('Downloading breweries data...');
-    const response = await axios.get(`${OPEN_BREWERY_DB_BASE_URL}?by_city=${DEFAULT_CITY}`, { 
-        headers: { 
-            "Accept-Encoding": "gzip,deflate,compress"
-        }, 
-    });
-    const breweryDocs = response.data;
-    for (const breweryDoc of breweryDocs) {
-        const {id, name, brewery_type, street, city, state, postal_code, website_url, longitude, latitude} = breweryDoc;
-        let longToSet
-        let latToSet
-        if (!longitude || !latitude) {
-            const {lat, lng} = await getGeoCode(postal_code)
-            longToSet = lng
-            latToSet = lat
-        } else {
-            longToSet = longitude
-            latToSet = latitude
+    try {
+        const response = await axios.get(`${OPEN_BREWERY_DB_BASE_URL}?by_city=${DEFAULT_CITY}`, { 
+            headers: { 
+                "Accept-Encoding": "gzip,deflate,compress"
+            }, 
+        });
+        const breweryDocs = response.data;
+        for (const breweryDoc of breweryDocs) {
+            const {id, name, brewery_type, street, city, state, postal_code, website_url, longitude, latitude} = breweryDoc;
+            let longToSet
+            let latToSet
+            if (!longitude || !latitude) {
+                const {lat, lng} = await getGeoCode(postal_code)
+                longToSet = lng
+                latToSet = lat
+            } else {
+                longToSet = longitude
+                latToSet = latitude
+            }
+            const brewery = {
+                id,
+                name,
+                brewery_type,
+                street,
+                city,
+                state,
+                postal_code,
+                website_url,
+                longitude: longToSet,
+                latitude: latToSet
+            }
+            await saveBrewery(brewery)
+        };
+        return {
+            ok: true,
+            status: 201
         }
-        const brewery = {
-            id,
-            name,
-            brewery_type,
-            street,
-            city,
-            state,
-            postal_code,
-            website_url,
-            longitude: longToSet,
-            latitude: latToSet
-        }
-        await saveBrewery(brewery)
-    };
+    } catch (err) {
+        return {
+            ok: false,
+            status: 500,
+            message: err.message
+        } 
+    }
+
 };
 
 async function getDefaultBreweries() {
-    return await breweries
-    .find({}, {
-        '_id': 0,
-        '__v': 0
-    })
+        return await breweries
+        .find({}, {
+            '_id': 0,
+            '__v': 0
+        })
 };
 
 //External API functions
@@ -90,8 +103,11 @@ async function getGeoCode(postal_code) {
             lng: Number(lng)
         };
     } catch(err) {
-        console.log(err.message)
-        return err
+        return {
+            ok: false,
+            status: 500,
+            message: err.message
+        } 
     }
 };
 
@@ -104,8 +120,11 @@ async function getBreweriesNearMe(latLong) {
         });
         return await response.data;
     } catch(err) {
-        console.log(err.message)
-        return err
+        return {
+            ok: false,
+            status: 500,
+            message: err.message
+        }
     }
 }
 

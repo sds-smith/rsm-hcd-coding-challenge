@@ -5,17 +5,20 @@ const {
 } = require('../../models/breweries/breweries.model');
 
 async function httpGetDefaultBreweries(req, res) {
-    return res.status(200).json(await getDefaultBreweries())
+    const response = await getDefaultBreweries()
+    return res.status(response.status).json(response)
 };
 
 async function httpGetBreweriesNearMe(req, res) {
     const {latLong} = req.query
-    return res.status(200).json(await getBreweriesNearMe(latLong))
+    const response = await getBreweriesNearMe(latLong)
+    return res.status(response.status).json(response)
 };
 
 async function httpGetGeoCode(req, res) {
     const {postal_code} = req.query
-    return res.status(200).json(await getGeoCode(postal_code))
+    const response = await getGeoCode(postal_code)
+    return res.status(response.status).json(response)
 }
 
 module.exports = {
