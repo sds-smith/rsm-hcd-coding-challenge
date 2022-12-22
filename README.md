@@ -1,0 +1,16 @@
+# Discover Breweries
+
+A brewery locator app built for the RSM HCD Coding Challenge and powered by the [OpenBreweryDB API](https://www.openbrewerydb.org/documentation).
+
+## Tech Stack:
+ * MongoDB
+ * Express.js 4.18.2
+ * React.js 18.2.8
+ * Node.js 18.12.1
+
+### Additional Packages/ Technologies used:
+ * React Router for client-side routing
+ * Axios for http requests (client to server and server to external api)
+ * Google-map-react for Google Maps integration
+ * SCSS for Styling
+ * Mongoose for MongoDB integration
