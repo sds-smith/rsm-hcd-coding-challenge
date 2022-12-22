@@ -12,21 +12,18 @@ const BreweryCard = () => {
     const params = useParams();
     const {ashevilleBreweries, breweriesNearMe} = useContext(BreweryContext);
  
-    const {name, street, city, state, postal_code, latitude, longitude} = brewery;
+    const {name, street, city, state, postal_code} = brewery;
 
     useEffect(() => {
         const breweryIdToFind = params.breweryId;
         const brewery = ashevilleBreweries.find(breweryToFind => breweryToFind.id === breweryIdToFind) ||
                         breweriesNearMe.find(breweryToFind => breweryToFind.id === breweryIdToFind);
         if (!brewery.latitude || !brewery.longitude) {
+            console.log('Getting coords...')
             const getGeoCode = async () => {
                 try {
-                    const geoResponse = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?components=postal_code:${brewery.postal_code}&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`)
-                    const {lat, lng} = await geoResponse.data.results[0].geometry.location;
-                    setCenter({
-                        lat: Number(lat),
-                        lng: Number(lng)
-                    })
+                    const geoResponse = await axios.get(`http://localhost:8000/v1/breweries/get_geocode?postal_code=${brewery.postal_code}`)
+                    setCenter(geoResponse.data)
                 } catch(err) {
                     console.log(err.message)
                 }

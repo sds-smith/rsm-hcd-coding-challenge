@@ -1,9 +1,12 @@
+const path = require('path');
 const axios = require('axios');
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 
 const breweries = require('./breweries.mongo');
 
 const OPEN_BREWERY_DB_BASE_URL = 'https://api.openbrewerydb.org/breweries';
 const DEFAULT_CITY='asheville';
+const GOOGLE_MAPS_API_BASE_URL=`https://maps.googleapis.com/maps/api`
 
 //Mongo Functions
 async function loadBreweriesData() {
@@ -41,6 +44,16 @@ async function populateBreweriesData() {
     const breweryDocs = response.data;
     for (const breweryDoc of breweryDocs) {
         const {id, name, brewery_type, street, city, state, postal_code, website_url, longitude, latitude} = breweryDoc;
+        let longToSet
+        let latToSet
+        if (!longitude || !latitude) {
+            const {lat, lng} = await getGeoCode(postal_code)
+            longToSet = lng
+            latToSet = lat
+        } else {
+            longToSet = longitude
+            latToSet = latitude
+        }
         const brewery = {
             id,
             name,
@@ -50,8 +63,8 @@ async function populateBreweriesData() {
             state,
             postal_code,
             website_url,
-            longitude,
-            latitude
+            longitude: longToSet,
+            latitude: latToSet
         }
         await saveBrewery(brewery)
     };
@@ -63,6 +76,23 @@ async function getDefaultBreweries() {
         '_id': 0,
         '__v': 0
     })
+};
+
+//External API functions
+async function getGeoCode(postal_code) {
+    try {
+        const geoResponse = await axios.get(
+            `${GOOGLE_MAPS_API_BASE_URL}/geocode/json?components=postal_code:${postal_code}&key=${process.env.GOOGLE_MAPS_API_KEY}`
+        );
+        const {lat, lng} = await geoResponse.data.results[0].geometry.location;
+        return {
+            lat: Number(lat),
+            lng: Number(lng)
+        };
+    } catch(err) {
+        console.log(err.message)
+        return err
+    }
 };
 
 async function getBreweriesNearMe(latLong) {
@@ -82,5 +112,6 @@ async function getBreweriesNearMe(latLong) {
 module.exports = {
     loadBreweriesData,
     getDefaultBreweries,
+    getGeoCode,
     getBreweriesNearMe
 }
