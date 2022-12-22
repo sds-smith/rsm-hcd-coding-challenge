@@ -1,7 +1,8 @@
 import React from "react";
 import GoogleMapReact from 'google-map-react';
+import Marker from "../map-marker/map-marker.component";
 
-const Marker = ({ text }) => <div style={{width: 'fit-content', backgroundColor: 'yellow', border: '5px solid black'}}>{text}</div>;
+import './brewery-map.styles.scss'
 
 const BreweryMap = ({center, name}) => {
   const defaultProps = {
@@ -11,7 +12,7 @@ const BreweryMap = ({center, name}) => {
 
   return (
     // Important! Always set the container height explicitly
-    <div style={{ height: '50vh', width: '50vw' }}>
+    <div className='mapContainer' >
       <GoogleMapReact
         bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY }}
         defaultCenter={defaultProps.center}

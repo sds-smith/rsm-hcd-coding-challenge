@@ -1,11 +1,29 @@
 
 import { Link } from "react-router-dom";
 
+import BeerIcon from '../../assets/Beer-icon.png';
+import useTrackLocation from "../../hooks/use-track-location";
+
+import './header.styles.scss'
+
 const Header = () => {
+    const {handleTrackLocation} = useTrackLocation();
+
+    const onClick = () => {
+        console.log('click')
+        handleTrackLocation()
+    }
+
     return (
-        <div>
-            <Link to={'/home'}>HOME</Link>
+        <div className='headerContainer'>
+            <div className='linkContainer'>
+                <Link className='link' to={'/home'}>
+                    <img src={BeerIcon}/>
+                    <p>HOME</p>
+                </Link>
+            </div>
             <h1>Discover Breweries</h1>
+            <button onClick={onClick} >Find Breweries Near Me</button>
         </div>
     )
 }

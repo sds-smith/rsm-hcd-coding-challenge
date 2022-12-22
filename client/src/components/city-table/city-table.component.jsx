@@ -4,7 +4,7 @@ import TableRow from '../table-row/table-row.component';
 
 import { BreweryContext } from '../../context/brewery.context';
 
-import './city-table.styles.css'
+import './city-table.styles.scss'
 
 const CityTable = (props) => {
     const [city, setCity] = useState('');
@@ -23,26 +23,30 @@ const CityTable = (props) => {
     })
 
     return (
-        <table>
-            <caption>{props.city ? `${city} Breweries` : `Breweries near ${city}`}</caption>
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Type</th>
-                    <th>Address</th>
-                    <th>Website</th>
-                </tr>
-            </thead>
-            <tbody>
-            { 
-                breweries.map(brewery => (
-                        <TableRow key={brewery.id} brewery={brewery} />
-                    ) 
-                )
-            }
-            </tbody>
+        <div>
+            <h2>{props.city ? `${city} Breweries` : `Breweries near ${city}`}</h2>
+            <table>
+                {/* <caption>{props.city ? `${city} Breweries` : `Breweries near ${city}`}</caption> */}
+                <thead>
+                    <tr>
+                        <th>Name (click a brewery name to view more)</th>
+                        <th>Type</th>
+                        <th>Address</th>
+                        <th>Website (click to visit)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                { 
+                    breweries.map(brewery => (
+                            <TableRow key={brewery.id} brewery={brewery} />
+                        ) 
+                    )
+                }
+                </tbody>
 
-        </table>
+            </table>
+        </div>
+
     )
 }
 

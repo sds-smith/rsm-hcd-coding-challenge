@@ -1,0 +1,14 @@
+
+.tableLink {
+    text-decoration: none;
+    color: rgb(52,76,92);
+
+    &:hover {
+        font-weight: bold;
+        font-style: italic;
+    }
+
+    &:visited {
+        color: rgb(52,76,92);
+    }
+}

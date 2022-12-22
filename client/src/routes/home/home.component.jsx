@@ -1,24 +1,21 @@
 import {useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
-import Banner from "../../components/banner/banner.component";
+
 import Asheville from "../../components/asheville/asheville.component";
-import useTrackLocation from '../../hooks/use-track-location';
 import { BreweryContext } from "../../context/brewery.context";
 import { ClientContext } from "../../context/client.context";
 
+import './home.styles.scss'
+
 const Home = () => {
     const [breweriesError, setBreweriesError] = useState('');
-    const {handleTrackLocation} = useTrackLocation();
     const {breweriesNearMe, setBreweriesNearMe, hasBreweries} = useContext(BreweryContext);
     const {clientLatLong} = useContext(ClientContext)
 
     const navigate = useNavigate();
 
-    const onClick = () => {
-        console.log('click')
-        handleTrackLocation()
-    }
+
 
     useEffect(() => {
         const getMyLocalBreweries = async () => {
@@ -44,9 +41,7 @@ const Home = () => {
 
     return (
         <div>
-          <h1>Home</h1>
           <Asheville />
-          <button onClick={onClick} >Find Breweries Near Me</button>
         </div>
     )
 }
