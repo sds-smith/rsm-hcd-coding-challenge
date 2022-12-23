@@ -32,8 +32,8 @@ const BreweriesNearMe = () => {
               }
             }
             getMyLocalBreweries()
-        }
-    }, [clientLatLong])
+        } setBreweriesError('Unable to get your location')
+    }, [clientLatLong, ])
 
     return (
         <div>
