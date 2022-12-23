@@ -4,7 +4,7 @@ const {
     getBreweriesNearMe
 } = require('../../models/breweries/breweries.model');
 
-async function httpGetDefaultBreweries(req, res) {
+async function httpgetDefaultBreweries(req, res) {
     const response = await getDefaultBreweries()
     return res.status(200).json(response)
 };
@@ -22,7 +22,7 @@ async function httpGetGeoCode(req, res) {
 }
 
 module.exports = {
-    httpGetDefaultBreweries,
+    httpgetDefaultBreweries,
     httpGetGeoCode,
     httpGetBreweriesNearMe
 };

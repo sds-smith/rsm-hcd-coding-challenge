@@ -3,7 +3,7 @@ import {useState, useEffect, useContext, FC} from 'react';
 import TableRow from '../table-row/table-row.component';
 
 import { BreweryContext } from '../../context/brewery.context';
-import { BreweryArray, defaultBrewery } from '../../utils/types.utils';
+import { BreweryArray, defaultBreweryState } from '../../utils/types.utils';
 
 import './city-table.styles.scss';
 
@@ -13,14 +13,14 @@ type CityTableProps = {
 
 const CityTable: FC<CityTableProps> = (props) => {
     const [city, setCity] = useState('');
-    const [breweries, setBreweries] = useState<BreweryArray>([defaultBrewery]);
+    const [breweries, setBreweries] = useState<BreweryArray>([defaultBreweryState]);
 
-    const {ashevilleBreweries, breweriesNearMe} = useContext(BreweryContext);
+    const {defaultBreweries, breweriesNearMe} = useContext(BreweryContext);
 
     useEffect(() => {
         if (props.city) {
             setCity(props.city)
-            setBreweries(ashevilleBreweries);
+            setBreweries(defaultBreweries);
         } else {
             breweriesNearMe[0] && setCity(breweriesNearMe[0].city)
             setBreweries(breweriesNearMe)

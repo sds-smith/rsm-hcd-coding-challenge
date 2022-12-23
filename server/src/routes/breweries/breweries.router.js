@@ -1,14 +1,14 @@
 const express = require('express');
 
 const {
-    httpGetDefaultBreweries,
+    httpgetDefaultBreweries,
     httpGetGeoCode,
     httpGetBreweriesNearMe
 } = require('./breweries.controller')
 
 const breweriesRouter = express.Router();
 
-breweriesRouter.use('/asheville', httpGetDefaultBreweries);
+breweriesRouter.use('/default_city', httpgetDefaultBreweries);
 breweriesRouter.use('/get_geocode', httpGetGeoCode)
 breweriesRouter.use('/by-dist?*', httpGetBreweriesNearMe)
 

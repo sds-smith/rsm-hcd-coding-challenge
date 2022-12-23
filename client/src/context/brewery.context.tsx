@@ -3,15 +3,15 @@ import {BreweryContextProps, ProviderProps} from '../utils/context.utils';
 import { BreweryArray } from '../utils/types.utils';
 
 export const BreweryContext = createContext<BreweryContextProps>({
-    ashevilleBreweries: [null],
-    setAshevilleBreweries: ()=>{},
+    defaultBreweries: [null],
+    setDefaultBreweries: ()=>{},
     breweriesNearMe: [null],
     setBreweriesNearMe: ()=>{},
     hasBreweries: ()=>false
 });
 
 export const BreweryProvider: FC<ProviderProps> = ({children}) => {
-    const [ashevilleBreweries, setAshevilleBreweries] = useState<BreweryArray>([null]);
+    const [defaultBreweries, setDefaultBreweries] = useState<BreweryArray>([null]);
     const [breweriesNearMe, setBreweriesNearMe] = useState<BreweryArray>([null]);
 
     const hasBreweries = (array: BreweryArray): boolean => {
@@ -19,8 +19,8 @@ export const BreweryProvider: FC<ProviderProps> = ({children}) => {
     }
 
     const value = {
-        ashevilleBreweries,
-        setAshevilleBreweries,
+        defaultBreweries,
+        setDefaultBreweries,
         breweriesNearMe,
         setBreweriesNearMe,
         hasBreweries

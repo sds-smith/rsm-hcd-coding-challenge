@@ -20,7 +20,7 @@ A brewery locator app built for the [RSM HCD Coding Challenge](https://github.co
  The app is hosted live at some url. Feel free to try it out, or click the thumbnail below to view a short video.
 
  ## UI/UX Flow:
- When the user navigates to the home page, they are presented with a list of all breweries in a default city (Asheville, NC), provided by [OpenBreweryDB](https://www.openbrewerydb.org/documentation).
+ When the user navigates to the home page, they are presented with a list of all breweries in a default city (default_city, NC), provided by [OpenBreweryDB](https://www.openbrewerydb.org/documentation).
 
  Within the list, the user is able to:
   * Click on any brewery name to be routed to an individual brewery card displaying location information, including an embedded instance of Google Maps showing the brewery's location. 
@@ -36,6 +36,6 @@ A brewery locator app built for the [RSM HCD Coding Challenge](https://github.co
 The versionable API follows the MVC design pattern and is accessed through the '/v1' path. It consists of one router (BreweriesRouter) at 'v1/breweries'. 
 
 BreweriesRouter contains three endpoints:
- * '/asheville' returns the default list of breweries for display on the home page. This list is persisted in a MongoDB Cluster.
+ * '/default_city' returns the default list of breweries for display on the home page. This list is persisted in a MongoDB Cluster.
  * '/get_geocode?[BREWERY POSTAL CODE]' returns the latitude and longitude for any brewery that is missing that data in OpenBreweryDB. A request is sent to the Google Maps API.
  * '/by-dist?[CLIENT GEOLOCATION DATA]' returns a list of breweries closest to the user's current location. A request is sent to the OpenBreweryDB API.

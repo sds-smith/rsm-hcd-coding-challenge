@@ -21,7 +21,7 @@ export type BreweryType = {
     latitude: Number,
 }
 
-export const defaultBrewery = {
+export const defaultBreweryState = {
     id: '',
     name: '',
     brewery_type: '',

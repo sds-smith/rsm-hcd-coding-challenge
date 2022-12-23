@@ -3,8 +3,8 @@ import { BreweryType, BreweryArray } from "./types.utils";
 
 
 export type BreweryContextProps = {
-    ashevilleBreweries: BreweryArray;
-    setAshevilleBreweries(ashevilleBreweries: BreweryArray): void;
+    defaultBreweries: BreweryArray;
+    setDefaultBreweries(defaultBreweries: BreweryArray): void;
     breweriesNearMe: BreweryArray;
     setBreweriesNearMe(breweriesNearMe: BreweryArray): void;
     hasBreweries(array: BreweryArray): boolean

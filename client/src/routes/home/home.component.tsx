@@ -1,11 +1,11 @@
-import Asheville from "../../components/asheville/asheville.component";
+import DefaultCity from "../../components/default-city/default-city.component";
 
 import './home.styles.scss'
 
 const Home = () => {
     return (
         <div>
-          <Asheville />
+          <DefaultCity />
         </div>
     )
 }
