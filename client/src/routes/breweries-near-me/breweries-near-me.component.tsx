@@ -13,6 +13,7 @@ const BreweriesNearMe = () => {
     const {clientLatLong} = useContext(ClientContext);
 
     useEffect(() => {
+      setBreweriesError('');
         if (!hasBreweries(breweriesNearMe)) {
             const getMyLocalBreweries = async () => {
               if (clientLatLong) {
@@ -32,8 +33,8 @@ const BreweriesNearMe = () => {
               }
             }
             getMyLocalBreweries()
-        } setBreweriesError('Unable to get your location')
-    }, [clientLatLong, ])
+        } 
+    }, [clientLatLong])
 
     return (
         <div>
