@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const API_BASE_URL='http://localhost:8000/v1';
 
-export async function httpGetMyLocalBreweries(clientLatLong) {
+export async function httpGetMyLocalBreweries(clientLatLong: string) {
         try {
             const response = await axios.get(`${API_BASE_URL}/breweries/by-dist?latLong=${clientLatLong}`)
             return await response.data
@@ -20,7 +20,7 @@ export async function httpgetDefaultBreweries() {
     }
 };
 
-export async function httpGetBreweryLatLong(postal_code) {
+export async function httpGetBreweryLatLong(postal_code: string) {
     try {
         const response = await axios.get(`${API_BASE_URL}/breweries/get_geocode?postal_code=${postal_code}`)
         return response.data

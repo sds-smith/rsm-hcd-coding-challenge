@@ -10,6 +10,7 @@ A brewery locator app built for the [RSM HCD Coding Challenge](https://github.co
 
 ### Additional Technologies used:
  * React Router for client-side routing
+ * TypeScript for all client-side code
  * Axios for http requests (client to server and server to external api)
  * Google-map-react for Google Maps integration
  * SCSS for Styling
@@ -33,9 +34,9 @@ A brewery locator app built for the [RSM HCD Coding Challenge](https://github.co
  From any individual brewery card, the user can click the back arrow to return to the list from which they originally navigated to the brewery card.
 
 ## Server-side functionality:
-The versionable API follows the MVC design pattern and is accessed through the '/v1' path. It consists of one router (BreweriesRouter) at 'v1/breweries'. 
+The versionable REST API follows the MVC design pattern and is accessed through the `/v1` path. It consists of one router (BreweriesRouter) at `v1/breweries`. 
 
 BreweriesRouter contains three endpoints:
- * '/default_city' returns the default list of breweries for display on the home page. This list is persisted in a MongoDB Cluster.
- * '/get_geocode?[BREWERY POSTAL CODE]' returns the latitude and longitude for any brewery that is missing that data in OpenBreweryDB. A request is sent to the Google Maps API.
- * '/by-dist?[CLIENT GEOLOCATION DATA]' returns a list of breweries closest to the user's current location. A request is sent to the OpenBreweryDB API.
+ * `/default_city` returns the default list of breweries for display on the home page. This list is persisted in a MongoDB Cluster.
+ * `get_geocode?[BREWERY POSTAL CODE]` returns the latitude and longitude for any brewery that is missing that data in OpenBreweryDB. A request is sent to the Google Maps API.
+ * `/by-dist?[CLIENT GEOLOCATION DATA]` returns a list of breweries closest to the user's current location. A request is sent to the OpenBreweryDB API.

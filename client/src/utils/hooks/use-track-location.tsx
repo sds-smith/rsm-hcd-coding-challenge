@@ -7,7 +7,7 @@ const useTrackLocation = () => {
 
     const {setClientLatLong} = useContext(ClientContext);
 
-    const success = (position) => {
+    const success = (position: GeolocationPosition) => {
         const clientLat = position.coords.latitude;
         const clientLong = position.coords.longitude;
 
