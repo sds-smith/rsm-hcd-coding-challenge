@@ -19,6 +19,7 @@ A brewery locator app built for the [RSM HCD Coding Challenge](https://github.co
 
  ## Demo the App:
  The app is hosted live at some url. Feel free to try it out, or click the thumbnail below to view a short video.
+ 
  [![video link](http://img.youtube.com/vi/AsdvD8i8Wd4/0.jpg)](https://youtu.be/AsdvD8i8Wd4)
 
 
