@@ -1,10 +1,17 @@
-import React from "react";
+import {FC} from "react";
 import GoogleMapReact from 'google-map-react';
 import Marker from "../map-marker/map-marker.component";
 
-import './brewery-map.styles.scss'
+import { CenterType } from "../../utils/types.utils";
 
-const BreweryMap = ({center, name}) => {
+import './brewery-map.styles.scss';
+
+type BreweryMapProps = {
+  center: CenterType,
+  name: string
+}
+
+const BreweryMap: FC<BreweryMapProps> = ({center, name}) => {
   const defaultProps = {
     center,
     zoom: 15
@@ -13,7 +20,7 @@ const BreweryMap = ({center, name}) => {
   return (
     <div className='mapContainer' >
       <GoogleMapReact
-        bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY }}
+        bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY as string }}
         defaultCenter={defaultProps.center}
         defaultZoom={defaultProps.zoom}
       >

@@ -1,27 +1,19 @@
-import React, {useState, useEffect, useContext} from 'react';
+import {useState, useEffect, useContext, FC} from 'react';
 
 import TableRow from '../table-row/table-row.component';
 
 import { BreweryContext } from '../../context/brewery.context';
+import { BreweryArray, defaultBrewery } from '../../utils/types.utils';
 
 import './city-table.styles.scss';
 
-export type BreweryType = {
-    id: string,
-    name: string,
-    brewery_type: string,
-    street: string,
-    city: string,
-    state: string,
-    postal_code: string,
-    website_url: string,
-    longitude: Number,
-    latitude: Number,
+type CityTableProps = {
+    city?: string
 }
 
-const CityTable = (props) => {
+const CityTable: FC<CityTableProps> = (props) => {
     const [city, setCity] = useState('');
-    const [breweries, setBreweries] = useState([]);
+    const [breweries, setBreweries] = useState<BreweryArray>([defaultBrewery]);
 
     const {ashevilleBreweries, breweriesNearMe} = useContext(BreweryContext);
 
@@ -30,7 +22,7 @@ const CityTable = (props) => {
             setCity(props.city)
             setBreweries(ashevilleBreweries);
         } else {
-            setCity(breweriesNearMe[0].city)
+            breweriesNearMe[0] && setCity(breweriesNearMe[0].city)
             setBreweries(breweriesNearMe)
         }
     })
@@ -49,10 +41,11 @@ const CityTable = (props) => {
                 </thead>
                 <tbody>
                 { 
-                    breweries.map((brewery: BreweryType )=> (
-                            <TableRow key={brewery.id} brewery={brewery} />
-                        ) 
-                    )
+                    breweries.map((brewery)=> {
+                        if (brewery !== null) {
+                            return <TableRow key={brewery.id} brewery={brewery} />
+                        }
+                    })
                 }
                 </tbody>
 

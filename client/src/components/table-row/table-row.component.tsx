@@ -1,9 +1,15 @@
-import React from 'react';
+import { FC } from "react";
 import { Link } from "react-router-dom";
 
-import './table-row.styles.scss'
+import { BreweryType } from "../../utils/types.utils";
 
-const TableRow = ({brewery}) => {
+import './table-row.styles.scss';
+
+type TableRowProps = {
+    brewery: BreweryType
+}
+
+const TableRow: FC<TableRowProps> = ({brewery}) => {
     const {id, name, brewery_type, street, city, state, postal_code, website_url} = brewery;
 
     return (

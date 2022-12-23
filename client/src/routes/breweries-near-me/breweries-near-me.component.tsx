@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 
 import CityTable from "../../components/city-table/city-table.component";
 
@@ -21,7 +21,13 @@ const BreweriesNearMe = () => {
                    setBreweriesNearMe(breweries)
                    setBreweriesError('')
                 } catch (err) {
-                  setBreweriesError(err.message)
+                  if (err instanceof Error) {
+                    setBreweriesError(err.message)
+                  } else if (typeof err === 'string') {
+                    setBreweriesError(err)
+                  } else {
+                    setBreweriesError('Unknown error')
+                  }
                 }
               }
             }

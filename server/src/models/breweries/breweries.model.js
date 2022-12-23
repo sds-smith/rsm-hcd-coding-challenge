@@ -99,8 +99,12 @@ async function getGeoCode(postal_code) {
         );
         const {lat, lng} = await geoResponse.data.results[0].geometry.location;
         return {
-            lat: Number(lat),
-            lng: Number(lng)
+            ok: true,
+            status: 200,
+            data: {
+                lat: Number(lat),
+                lng: Number(lng)
+            }
         };
     } catch(err) {
         return {
@@ -118,7 +122,12 @@ async function getBreweriesNearMe(latLong) {
                 "Accept-Encoding": "gzip,deflate,compress"
             }, 
         });
-        return await response.data;
+        const breweries = await response.data;
+        return {
+            ok: true,
+            status: 200,
+            breweries
+        }
     } catch(err) {
         return {
             ok: false,

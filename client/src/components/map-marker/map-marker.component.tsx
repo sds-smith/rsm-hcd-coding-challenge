@@ -1,8 +1,12 @@
-import React from 'react';
+import {FC} from 'react';
 
 import './map-marker.styles.scss';
 
-const Marker = ({ text }) => {
+type MarkerProps = {
+    text: string
+}
+
+const Marker: FC<MarkerProps> = ({ text }) => {
     return (
         <div className='markerContainer'>
             <div className='pointer' />

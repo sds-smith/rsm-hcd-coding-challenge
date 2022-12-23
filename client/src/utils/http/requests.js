@@ -13,7 +13,7 @@ export async function httpGetMyLocalBreweries(clientLatLong) {
 
 export async function httpGetDefaultBreweries() {
     try {
-        const response = await axios.get(`${API_BASE_URL}/v1/breweries/asheville`)
+        const response = await axios.get(`${API_BASE_URL}/breweries/asheville`)
         return await response.data
     } catch (err) {
         return err

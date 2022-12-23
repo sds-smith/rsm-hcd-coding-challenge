@@ -1,39 +1,17 @@
-import React, {useState, useEffect, useContext } from 'react';
+import {useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import BreweryMap from '../brewery-map/brewery-map.component';
 import { BreweryContext } from '../../context/brewery.context';
 import {httpGetBreweryLatLong} from '../../utils/http/requests';
 
-import { BreweryType } from '../city-table/city-table.component';
+import { BreweryType, CenterType, defaultBrewery, defaultCenter } from '../../utils/types.utils';
 
 import './brewery-card.styles.scss';
 
-const defaultBrewery = {
-    id: '',
-    name: '',
-    brewery_type: '',
-    street: '',
-    city: '',
-    state: '',
-    postal_code: '',
-    website_url: '',
-    longitude: 0,
-    latitude: 0,
-}
-
-export type Center = {
-    lat: number,
-    lng: number
-}
-
-const defaultCenter = {
-    lat: 0,
-    lng: 0
-}
 
 const BreweryCard = () => {
     const [brewery, setBrewery] = useState<BreweryType>(defaultBrewery);
-    const [center, setCenter] = useState(defaultCenter);
+    const [center, setCenter] = useState<CenterType>(defaultCenter);
     const params = useParams();
     const {ashevilleBreweries, breweriesNearMe} = useContext(BreweryContext);
  
@@ -41,25 +19,28 @@ const BreweryCard = () => {
 
     useEffect(() => {
         const breweryIdToFind = params.breweryId;
-        const brewery = ashevilleBreweries.find(breweryToFind => breweryToFind.id === breweryIdToFind) ||
-                        breweriesNearMe.find(breweryToFind => breweryToFind.id === breweryIdToFind);
-        if (!brewery.latitude || !brewery.longitude) {
+        const brewery = ashevilleBreweries.find(breweryToFind => breweryToFind !== null && breweryToFind.id === breweryIdToFind) ||
+                        breweriesNearMe.find(breweryToFind => breweryToFind !== null && breweryToFind.id === breweryIdToFind);
+        if (brewery && !brewery.latitude || brewery && !brewery.longitude) {
             const getGeoCode = async () => {
                 try {
                     const geoResponse = await httpGetBreweryLatLong(brewery.postal_code)
                     setCenter(geoResponse.data)
                 } catch(err) {
-                    console.log(err.message)
+                    console.log(err)
                 }
             };
             getGeoCode();
         } else {
-            setCenter({
-                lat: Number(brewery.latitude),
-                lng: Number(brewery.longitude)
-            })
+            if (brewery) {
+                setCenter({
+                    lat: Number(brewery.latitude),
+                    lng: Number(brewery.longitude)
+                })
+            }
+
         }
-        setBrewery(brewery)
+        brewery && setBrewery(brewery)
     }, [])
 
     return (
