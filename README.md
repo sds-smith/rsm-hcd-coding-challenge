@@ -50,4 +50,4 @@ BreweriesRouter contains three endpoints:
  * `/by-dist?[CLIENT GEOLOCATION DATA]` returns a list of breweries closest to the user's current location. A request is sent to the OpenBreweryDB API.
 
 ## Deployment and Hosting
- The app is hosted on AWS Cloudfront from an AWS ec2 instance, where it runs in a Docker container.
+ The app is distributed on AWS Cloudfront from an AWS ec2 instance, where it runs in a Docker container.

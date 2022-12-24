@@ -37,20 +37,16 @@ async function saveBrewery(brewery) {
 async function populateBreweriesData() {
     console.log('Downloading breweries data...');
     try {
-        const response = await axios.get(`${OPEN_BREWERY_DB_BASE_URL}?by_city=${DEFAULT_CITY}`, { 
-            headers: { 
-                "Accept-Encoding": "gzip,deflate,compress"
-            }, 
-        });
-        const breweryDocs = response.data;
+        const response = await axios.get(`${OPEN_BREWERY_DB_BASE_URL}?by_city=${DEFAULT_CITY}`);
+        const breweryDocs = await response.data;
         for (const breweryDoc of breweryDocs) {
             const {id, name, brewery_type, street, city, state, postal_code, website_url, longitude, latitude} = breweryDoc;
             let longToSet
             let latToSet
             if (!longitude || !latitude) {
-                const {lat, lng} = await getGeoCode(postal_code)
-                longToSet = lng
-                latToSet = lat
+                const {data} = await getGeoCode(postal_code)
+                longToSet = data.lng
+                latToSet = data.lat
             } else {
                 longToSet = longitude
                 latToSet = latitude
@@ -74,6 +70,7 @@ async function populateBreweriesData() {
             status: 201
         }
     } catch (err) {
+        console.log(err.message)
         return {
             ok: false,
             status: 500,
@@ -120,11 +117,7 @@ async function getGeoCode(postal_code) {
 
 async function getBreweriesNearMe(latLong) {
     try {
-        const response = await axios.get(`${OPEN_BREWERY_DB_BASE_URL}?by_dist=${latLong}`, { 
-            headers: { 
-                "Accept-Encoding": "gzip,deflate,compress"
-            }, 
-        });
+        const response = await axios.get(`${OPEN_BREWERY_DB_BASE_URL}?by_dist=${latLong}`);
         const breweries = await response.data;
         return {
             ok: true,
