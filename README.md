@@ -2,7 +2,7 @@
 
 A brewery locator app built for the [RSM HCD Coding Challenge](https://github.com/sds-smith/rsm-hcd-coding-challenge/blob/main/RSM%20HCD%20Coding%20Challenge%20Instructions.pdf) and powered by the [OpenBreweryDB API](https://www.openbrewerydb.org/documentation).
 
-## Primary Tech Stack:
+## Primary Tech Stack
  * MongoDB
  * Express.js 4.18.2
  * React.js 18.2.8
@@ -17,13 +17,13 @@ A brewery locator app built for the [RSM HCD Coding Challenge](https://github.co
  * Mongoose for MongoDB integration
  * Docker for containerizing the app for deployment
 
- ## Demo the App:
+ ## Demo the App
  The app is hosted live at [https://dojto4s1hoazu.cloudfront.net/](https://dojto4s1hoazu.cloudfront.net/). Feel free to try it out, or click the image below to view a short video.
 
  [![video link](http://img.youtube.com/vi/AsdvD8i8Wd4/0.jpg)](https://youtu.be/AsdvD8i8Wd4)
 
 
- ## UI/UX Flow:
+ ## UI/UX Flow
  When the user navigates to the home page, they are presented with a list of all breweries in a default city (Asheville, NC), provided by [OpenBreweryDB](https://www.openbrewerydb.org/documentation). The list displays the following information for each brewery:
 
   * Name
@@ -41,7 +41,7 @@ A brewery locator app built for the [RSM HCD Coding Challenge](https://github.co
  
  From any individual brewery card, the user can click the back arrow to return to the list from which they originally navigated to the brewery card.
 
-## Server-side functionality:
+## Server-side functionality
 The versionable REST API follows the MVC design pattern and is accessed through the `/v1` path. It consists of one router (BreweriesRouter) at `v1/breweries`. 
 
 BreweriesRouter contains three endpoints:
