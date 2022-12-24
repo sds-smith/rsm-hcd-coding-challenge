@@ -12,7 +12,7 @@ async function httpgetDefaultBreweries(req, res) {
 async function httpGetBreweriesNearMe(req, res) {
     const {latLong} = req.query
     const response = await getBreweriesNearMe(latLong)
-    return res.status(response.status).json(response.breweries)
+    return res.status(response.status).json(response.data)
 };
 
 async function httpGetGeoCode(req, res) {

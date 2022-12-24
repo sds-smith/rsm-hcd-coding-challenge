@@ -102,6 +102,7 @@ async function getGeoCode(postal_code) {
             ok: true,
             status: 200,
             data: {
+                message: "lat long retrieved",
                 lat: Number(lat),
                 lng: Number(lng)
             }
@@ -110,7 +111,9 @@ async function getGeoCode(postal_code) {
         return {
             ok: false,
             status: 500,
-            message: err.message
+            data: {
+                message: err.message
+            }
         } 
     }
 };
@@ -126,13 +129,18 @@ async function getBreweriesNearMe(latLong) {
         return {
             ok: true,
             status: 200,
-            breweries
+            data: {
+                message: "Breweries Retrieved",
+                breweries
+            }
         }
     } catch(err) {
         return {
             ok: false,
             status: 500,
-            message: err.message
+            data: {
+                message: err.message
+            }
         }
     }
 }

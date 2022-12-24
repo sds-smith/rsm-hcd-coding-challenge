@@ -10,6 +10,7 @@ const useTrackLocation = () => {
     const success = (position: GeolocationPosition) => {
         const clientLat = position.coords.latitude;
         const clientLong = position.coords.longitude;
+        console.log({clientLat, clientLong})
 
         setClientLatLong(`${clientLat},${clientLong}`);
         setLocationErrorMsg('');
@@ -17,6 +18,7 @@ const useTrackLocation = () => {
     }
 
     const error = () => {
+        console.log('Unable to retrieve your location')
         setLocationErrorMsg('Unable to retrieve your location')
         setIsFindingLocation(false)
     }

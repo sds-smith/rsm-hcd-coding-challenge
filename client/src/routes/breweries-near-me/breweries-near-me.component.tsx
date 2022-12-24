@@ -13,21 +13,26 @@ const BreweriesNearMe = () => {
     const {clientLatLong} = useContext(ClientContext);
 
     useEffect(() => {
-      setBreweriesError('');
         if (!hasBreweries(breweriesNearMe)) {
             const getMyLocalBreweries = async () => {
               if (clientLatLong) {
                 try {
-                   const breweries = await httpGetMyLocalBreweries(clientLatLong);
-                   setBreweriesNearMe(breweries)
-                   setBreweriesError('')
+                   const response = await httpGetMyLocalBreweries(clientLatLong);
+                   const {breweries, message} = response.data
+                   if (breweries) {
+                    setBreweriesNearMe(breweries)
+                    setBreweriesError('')
+                   } else {
+                    setBreweriesError(message)
+                   }
+                   console.log(message)
                 } catch (err) {
                   if (err instanceof Error) {
                     setBreweriesError(err.message)
                   } else if (typeof err === 'string') {
                     setBreweriesError(err)
                   } else {
-                    setBreweriesError('Unknown error')
+                    setBreweriesError(`Error getting breweries ${err}`)
                   }
                 }
               }
