@@ -18,7 +18,7 @@ A brewery locator app built for the [RSM HCD Coding Challenge](https://github.co
  * Docker for containerizing the app for deployment
 
  ## Demo the App:
- The app is hosted live at [https://dojto4s1hoazu.cloudfront.net/](https://dojto4s1hoazu.cloudfront.net/). Feel free to try it out, or click the thumbnail below to view a short video.
+ The app is hosted live at [https://dojto4s1hoazu.cloudfront.net/](https://dojto4s1hoazu.cloudfront.net/). Feel free to try it out, or click the image below to view a short video.
 
  [![video link](http://img.youtube.com/vi/AsdvD8i8Wd4/0.jpg)](https://youtu.be/AsdvD8i8Wd4)
 
