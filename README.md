@@ -49,4 +49,5 @@ BreweriesRouter contains three endpoints:
  * `/get_geocode?[BREWERY POSTAL CODE]` returns the latitude and longitude for any brewery that is missing that data in OpenBreweryDB. A request is sent to the Google Maps API.
  * `/by-dist?[CLIENT GEOLOCATION DATA]` returns a list of breweries closest to the user's current location. A request is sent to the OpenBreweryDB API.
 
+## Deployment and Hosting
  The app is hosted on AWS Cloudfront from an AWS ec2 instance, where it runs in a Docker container.
