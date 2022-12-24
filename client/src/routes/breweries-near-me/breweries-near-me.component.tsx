@@ -18,14 +18,14 @@ const BreweriesNearMe = () => {
               if (clientLatLong) {
                 try {
                    const response = await httpGetMyLocalBreweries(clientLatLong);
-                   const {breweries, message} = response.data
-                   if (breweries) {
+                   const {message, breweries} = response
+                   console.log({message})
+                   if (message === 'Breweries Retrieved') {
                     setBreweriesNearMe(breweries)
                     setBreweriesError('')
                    } else {
                     setBreweriesError(message)
                    }
-                   console.log(message)
                 } catch (err) {
                   if (err instanceof Error) {
                     setBreweriesError(err.message)
