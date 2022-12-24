@@ -3,7 +3,7 @@
 A brewery locator app built for the [RSM HCD Coding Challenge](https://github.com/sds-smith/rsm-hcd-coding-challenge/blob/main/RSM%20HCD%20Coding%20Challenge%20Instructions.pdf) and powered by the [OpenBreweryDB API](https://www.openbrewerydb.org/documentation).
 
 ## Primary Tech Stack
- * MongoDB
+ * MongoDB 6.0
  * Express.js 4.18.2
  * React.js 18.2.8
  * Node.js 18.12.1
