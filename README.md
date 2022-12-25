@@ -32,22 +32,22 @@ A brewery locator app built for the [RSM HCD Coding Challenge](https://github.co
   * Website URL (Clickable)
 
  Within the list, the user is able to:
-  * Click on any brewery name to be routed to an individual brewery card displaying location information, including name, address, and a map indicating the brewery's location using latitude and longitude. 
-  * Click on any brewery url to open the brewery's own website in a new tab.
+  * Click on any brewery name to be routed to an individual brewery page displaying location information, including name, address, and a map indicating the brewery's location using latitude and longitude. 
+  * Click on any brewery url to open the brewery's website in a new tab.
 
  From any route in the App, the user will see a persistent header containing two navigation elements:
   * Beer mug icon - returns to the home page
   * Find Breweries Near Me - leverages the browser's built-in Geolocation API (with the user's explicit permission) to display a list of breweries closest to the client's location, returned from OpenBreweryDB.
  
- From any individual brewery card, the user can click the back arrow to return to the list from which they originally navigated to the brewery card.
+ From any individual brewery page, the user can click the back arrow to return to the list from which they originally navigated to the brewery page.
 
 ## Server-side functionality
 The versionable REST API follows the MVC design pattern and is accessed through the `/v1` path. It consists of one router (BreweriesRouter) at `v1/breweries`. 
 
 BreweriesRouter contains three endpoints:
- * `/default_city` returns the default list of breweries for display on the home page. This list is persisted in a MongoDB Cluster.
- * `/get_geocode?[BREWERY POSTAL CODE]` returns the latitude and longitude for any brewery that is missing that data in OpenBreweryDB. A request is sent to the Google Maps API.
- * `/by-dist?[CLIENT GEOLOCATION DATA]` returns a list of breweries closest to the user's current location. A request is sent to the OpenBreweryDB API.
+ * `'/default_city'` returns the default list of breweries for display on the home page. This list is persisted in a MongoDB Cluster.
+ * `'/get_geocode?[BREWERY_POSTAL_CODE]'` returns the latitude and longitude for any brewery that is missing that data in OpenBreweryDB. A request is sent to the Google Maps API.
+ * `'/by-dist?[CLIENT_GEOLOCATION_DATA]'` returns a list of breweries closest to the user's current location. A request is sent to the OpenBreweryDB API.
 
 ## Deployment and Hosting
- The app is distributed on AWS Cloudfront from two AWS EC2 instances, each running it in a Docker container.
+ The app is distributed on AWS Cloudfront from two load-balanced AWS EC2 instances, each running it in a Docker container.
