@@ -5,7 +5,7 @@ const {loadBreweriesData} = require('./models/breweries/breweries.model')
 
 const app = require('./app');
 
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 80;
 
 const server = http.createServer(app);
 
