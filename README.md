@@ -15,7 +15,7 @@ A brewery locator app built for the [RSM HCD Coding Challenge](https://github.co
  * Google-map-react for Google Maps integration
  * SCSS for Styling
  * Mongoose for MongoDB integration
- * Docker for containerizing the app for deployment
+ * Docker for containerizing the app for shipping
 
  ## Demo the App
  The app is hosted live at [https://dgx0klc0yfelo.cloudfront.net](https://dgx0klc0yfelo.cloudfront.net). Feel free to try it out, or click the image below to view a short video.
