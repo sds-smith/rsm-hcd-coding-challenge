@@ -2,10 +2,9 @@ import { useState, useContext } from "react";
 import { ClientContext } from "../../context/client.context";
 
 const useTrackLocation = () => {
-    const [locationErrorMsg, setLocationErrorMsg] = useState('');
     const [isFindingLocation, setIsFindingLocation] = useState(false);
 
-    const {setClientLatLong} = useContext(ClientContext);
+    const {setClientLatLong, locationErrorMsg, setLocationErrorMsg} = useContext(ClientContext);
 
     const success = (position: GeolocationPosition) => {
         const clientLat = position.coords.latitude;

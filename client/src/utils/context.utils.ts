@@ -12,7 +12,9 @@ export type BreweryContextProps = {
 
 export type ClientContextProps = {
     clientLatLong: string;
-    setClientLatLong(clientLatLong: string): void
+    setClientLatLong(clientLatLong: string): void;
+    locationErrorMsg: string;
+    setLocationErrorMsg(locationErrorMsg: string): void;
 }
 
 export type ProviderProps = {

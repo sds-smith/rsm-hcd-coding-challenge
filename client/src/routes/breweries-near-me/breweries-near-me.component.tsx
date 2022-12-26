@@ -10,7 +10,7 @@ const BreweriesNearMe = () => {
     const [breweriesError, setBreweriesError] = useState('');
 
     const {hasBreweries, breweriesNearMe,setBreweriesNearMe} = useContext(BreweryContext);
-    const {clientLatLong} = useContext(ClientContext);
+    const {clientLatLong, locationErrorMsg} = useContext(ClientContext);
 
     useEffect(() => {
         if (!hasBreweries(breweriesNearMe)) {
@@ -43,8 +43,8 @@ const BreweriesNearMe = () => {
 
     return (
         <div>
-            { breweriesError ? 
-                <div>{`${breweriesError}. Please return to home page.`}</div>
+            { locationErrorMsg ? 
+                <div>{`${locationErrorMsg}. Please return to home page.`}</div>
                 : 
                 hasBreweries(breweriesNearMe) ? 
                     <CityTable /> :
