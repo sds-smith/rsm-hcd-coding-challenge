@@ -1,6 +1,6 @@
 # Discover Breweries
 
-A brewery locator app built for the [RSM HCD Coding Challenge](https://github.com/sds-smith/rsm-hcd-coding-challenge/blob/main/RSM%20HCD%20Coding%20Challenge%20Instructions.pdf) and powered by the [OpenBreweryDB API](https://www.openbrewerydb.org/documentation).
+A brewery locator app built for the [RSM HCD Coding Challenge](https://rsm-hcd-coding-challenge.s3.amazonaws.com/requirements/RSM+HCD+Coding+Challenge+Instructions+(1).pdf) and powered by the [OpenBreweryDB API](https://www.openbrewerydb.org/documentation).
 
 ## Primary Tech Stack
  * MongoDB 6.0
