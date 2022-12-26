@@ -45,9 +45,9 @@ A brewery locator app built for the [RSM HCD Coding Challenge](https://rsm-hcd-c
 The versionable REST API follows the MVC design pattern and is accessed through the `/v1` path. It consists of one router (BreweriesRouter) at `v1/breweries`. 
 
 BreweriesRouter contains three endpoints:
- * `'/default_city'` returns the default list of breweries for display on the home page. This list is persisted in a MongoDB Cluster.
+ * `'/default_city'` returns the default list of breweries for display on the home page. This list is generated from OpenBreweryDB and is persisted in a MongoDB Cluster.
  * `'/get_geocode?[BREWERY_POSTAL_CODE]'` returns the latitude and longitude for any brewery that is missing that data in OpenBreweryDB. A request is sent to the Google Maps API.
  * `'/by-dist?[CLIENT_GEOLOCATION_DATA]'` returns a list of breweries closest to the user's current location. A request is sent to the OpenBreweryDB API.
 
 ## Deployment and Hosting
- The app is distributed on AWS Cloudfront from two load-balanced AWS EC2 instances, each running it in a Docker container.
+ The app is hosted on an AWS Cloudfront distribution from two load-balanced AWS EC2 instances, where it is running in a Docker container.
