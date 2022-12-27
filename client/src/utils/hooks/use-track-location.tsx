@@ -1,10 +1,12 @@
 import { useState, useContext } from "react";
 import { ClientContext } from "../../context/client.context";
+import { BreweryContext } from "../../context/brewery.context";
 
 const useTrackLocation = () => {
     const [isFindingLocation, setIsFindingLocation] = useState(false);
 
     const {setClientLatLong, locationErrorMsg, setLocationErrorMsg} = useContext(ClientContext);
+    const {setLoadText} = useContext(BreweryContext);
 
     const success = (position: GeolocationPosition) => {
         const clientLat = position.coords.latitude;
@@ -13,6 +15,7 @@ const useTrackLocation = () => {
         setClientLatLong(`${clientLat},${clientLong}`);
         setLocationErrorMsg('');
         setIsFindingLocation(false);
+        setLoadText('Location Found.')
     }
 
     const error = () => {
@@ -22,7 +25,8 @@ const useTrackLocation = () => {
     }
 
     const handleTrackLocation = () => {
-        setIsFindingLocation(true)
+        setIsFindingLocation(true);
+        setLoadText('Finding your Location...');
 
         if (!navigator.geolocation) {
             setLocationErrorMsg('Geolocation is not supported by your browser')

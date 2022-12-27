@@ -7,6 +7,8 @@ export type BreweryContextProps = {
     setDefaultBreweries(defaultBreweries: BreweryArray): void;
     breweriesNearMe: BreweryArray;
     setBreweriesNearMe(breweriesNearMe: BreweryArray): void;
+    loadText: string;
+    setLoadText(loadText: string): void;
     hasBreweries(array: BreweryArray): boolean
 }
 

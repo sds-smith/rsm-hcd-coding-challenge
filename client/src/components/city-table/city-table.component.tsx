@@ -14,7 +14,7 @@ type CityTableProps = {
 const CityTable: FC<CityTableProps> = ({breweriesToRender}) => {
     const [city, setCity] = useState('');
     
-    const {hasBreweries} = useContext(BreweryContext);
+    const {hasBreweries, loadText} = useContext(BreweryContext);
 
     useEffect(() => {
             breweriesToRender[0] && setCity(breweriesToRender[0].city)
@@ -46,7 +46,7 @@ const CityTable: FC<CityTableProps> = ({breweriesToRender}) => {
                     </table>
                 </div>
             ) : (
-                <div>Loading...</div>
+                <h2>{loadText}</h2>
             )}
         </>
     );

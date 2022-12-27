@@ -16,18 +16,20 @@ const useBreweriesNearMe = () => {
     const [breweriesError, setBreweriesError] = useState('');
 
     const {clientLatLong} = useContext(ClientContext);
-    const {hasBreweries, defaultBreweries, breweriesNearMe, setBreweriesNearMe} = useContext(BreweryContext);
+    const {hasBreweries, defaultBreweries, breweriesNearMe, setBreweriesNearMe, setLoadText} = useContext(BreweryContext);
 
     const {handleTrackLocation} = useTrackLocation();
 
     const getMyLocalBreweries = async () => {
         if (clientLatLong) {
+          setLoadText('Fetching Breweries Data...')
           try {
              const response = await httpGetMyLocalBreweries(clientLatLong);
              const {message, breweries} = response
              if (message === 'Breweries Retrieved') {
               setBreweriesNearMe(breweries)
               setBreweriesError('')
+              setLoadText('Loading...')
              } else {
               setBreweriesError(message)
              }
