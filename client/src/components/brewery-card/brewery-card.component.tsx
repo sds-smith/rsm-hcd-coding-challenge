@@ -1,10 +1,8 @@
-import {useState, useEffect, useContext } from 'react';
-import { useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import BreweryMap from '../brewery-map/brewery-map.component';
-import { BreweryContext } from '../../context/brewery.context';
-import {httpGetBreweryLatLong} from '../../utils/http/requests';
+import useBreweriesNearMe from '../../utils/hooks/use-breweries-near-me';
 
-import { BreweryType, CenterType, defaultBreweryState, defaultCenter } from '../../utils/types.utils';
+import { BreweryType, CenterType, defaultBreweryState, defaultCenter, GetBreweryResponseType } from '../../utils/types.utils';
 
 import './brewery-card.styles.scss';
 
@@ -12,35 +10,16 @@ import './brewery-card.styles.scss';
 const BreweryCard = () => {
     const [brewery, setBrewery] = useState<BreweryType>(defaultBreweryState);
     const [center, setCenter] = useState<CenterType>(defaultCenter);
-    const params = useParams();
-    const {defaultBreweries, breweriesNearMe} = useContext(BreweryContext);
  
     const {name, street, city, state, postal_code} = brewery;
 
-    useEffect(() => {
-        const breweryIdToFind = params.breweryId;
-        const brewery = defaultBreweries.find(breweryToFind => breweryToFind !== null && breweryToFind.id === breweryIdToFind) ||
-                        breweriesNearMe.find(breweryToFind => breweryToFind !== null && breweryToFind.id === breweryIdToFind);
-        if (brewery && !brewery.latitude || brewery && !brewery.longitude) {
-            const getGeoCode = async () => {
-                try {
-                    const geoResponse = await httpGetBreweryLatLong(brewery.postal_code)
-                    setCenter(geoResponse.data)
-                } catch(err) {
-                    console.log(err)
-                }
-            };
-            getGeoCode();
-        } else {
-            if (brewery) {
-                setCenter({
-                    lat: Number(brewery.latitude),
-                    lng: Number(brewery.longitude)
-                })
-            }
+    const {getBrewery} = useBreweriesNearMe();
 
-        }
-        brewery && setBrewery(brewery)
+    useEffect(() => {
+        const {brewery, center} = getBrewery() as GetBreweryResponseType;
+
+        brewery && setBrewery(brewery);
+        center && setCenter(center);
     }, [])
 
     return (

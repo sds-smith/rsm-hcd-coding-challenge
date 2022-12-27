@@ -35,3 +35,8 @@ export const defaultBreweryState = {
 }
 
 export type BreweryArray = [BreweryType | null];
+
+export type GetBreweryResponseType = {
+  brewery: BreweryType,
+  center: CenterType
+}
