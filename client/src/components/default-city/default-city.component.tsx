@@ -29,7 +29,7 @@ const DefaultCity = () => {
     }, [defaultBreweries]);
 
     return (
-        <CityTable city='Asheville'/>
+        <CityTable breweriesToRender={defaultBreweries}/>
     )
 }
 

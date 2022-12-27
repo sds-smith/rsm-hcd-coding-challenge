@@ -45,16 +45,15 @@ const BreweryCard = () => {
 
     return (
         <div className='breweryCardContainer' >
-            <h2>{name}</h2>
-            <p>{street}</p>
-            <p>{`${city}, ${state} ${postal_code}`}</p>
-            <div className='breweryMapWrapper'>
+            <div className='breweryInfo'>
+                <h2>{name}</h2>
+                <p>{street}</p>
+                <p>{`${city}, ${state} ${postal_code}`}</p>
+            </div>
                 {
-                    center.lat ? <BreweryMap center={center} name={name} />
+                    center.lat ? <BreweryMap center={center} name={name} zoom={15} />
                                 : <div>Loading Map...</div>
                 }
-
-            </div>
         </div>
     )
 }

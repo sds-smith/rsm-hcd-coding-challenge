@@ -3,56 +3,53 @@ import {useState, useEffect, useContext, FC} from 'react';
 import TableRow from '../table-row/table-row.component';
 
 import { BreweryContext } from '../../context/brewery.context';
-import { BreweryArray, defaultBreweryState } from '../../utils/types.utils';
+import { BreweryArray } from '../../utils/types.utils';
 
 import './city-table.styles.scss';
 
 type CityTableProps = {
-    city?: string
+    breweriesToRender: BreweryArray
 }
 
-const CityTable: FC<CityTableProps> = (props) => {
+const CityTable: FC<CityTableProps> = ({breweriesToRender}) => {
     const [city, setCity] = useState('');
-    const [breweries, setBreweries] = useState<BreweryArray>([defaultBreweryState]);
-
-    const {defaultBreweries, breweriesNearMe} = useContext(BreweryContext);
+    
+    const {hasBreweries} = useContext(BreweryContext);
 
     useEffect(() => {
-        if (props.city) {
-            setCity(props.city)
-            setBreweries(defaultBreweries);
-        } else {
-            breweriesNearMe[0] && setCity(breweriesNearMe[0].city)
-            setBreweries(breweriesNearMe)
-        }
-    })
+            breweriesToRender[0] && setCity(breweriesToRender[0].city)
+    }, [breweriesToRender]);
 
     return (
-        <div>
-            <h2>{props.city ? `${city} Breweries` : `Breweries near ${city}`}</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Name (click a brewery name to view more)</th>
-                        <th>Type</th>
-                        <th>Address</th>
-                        <th>Website (click to visit)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                { 
-                    breweries.map((brewery)=> {
-                        if (brewery !== null) {
-                            return <TableRow key={brewery.id} brewery={brewery} />
+        <>
+            { hasBreweries(breweriesToRender) ? (
+                <div>    
+                    <h2>{`Breweries near ${city}`}</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name (click a brewery name to view more)</th>
+                                <th>Type</th>
+                                <th>Address</th>
+                                <th>Website (click to visit)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        { 
+                            breweriesToRender.map((brewery)=> {
+                                if (brewery !== null) {
+                                    return <TableRow key={brewery.id} brewery={brewery} />
+                                }
+                            })
                         }
-                    })
-                }
-                </tbody>
+                        </tbody>
+                    </table>
+                </div>
+            ) : (
+                <div>Loading...</div>
+            )}
+        </>
+    );
+};
 
-            </table>
-        </div>
-
-    )
-}
-
-export default CityTable
+export default CityTable;

@@ -8,26 +8,23 @@ import './brewery-map.styles.scss';
 
 type BreweryMapProps = {
   center: CenterType,
-  name: string
+  name: string,
+  zoom: number
 }
 
-const BreweryMap: FC<BreweryMapProps> = ({center, name}) => {
-  const defaultProps = {
-    center,
-    zoom: 15
-  };
+const BreweryMap: FC<BreweryMapProps> = ({center, name, zoom}) => {
 
   return (
     <div className='mapContainer' >
       <GoogleMapReact
         bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY as string }}
-        defaultCenter={defaultProps.center}
-        defaultZoom={defaultProps.zoom}
+        defaultCenter={center}
+        defaultZoom={zoom}
       >
         <Marker
-          // lat={center.lat}
-          // lng={center.lng}
           text={name}
+          lat={center.lat}
+          lng={center.lng}
         />
       </GoogleMapReact>
     </div>

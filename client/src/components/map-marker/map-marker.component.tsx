@@ -3,7 +3,9 @@ import {FC} from 'react';
 import './map-marker.styles.scss';
 
 type MarkerProps = {
-    text: string
+    text: string,
+    lat: number,
+    lng: number
 }
 
 const Marker: FC<MarkerProps> = ({ text }) => {

@@ -10,5 +10,12 @@
     border-radius: 2vh;
     background-color: rgb(156,164,172);
 
-
+    .breweryInfo {
+        margin: 10px 0;
+        
+        h2, p {
+            margin: 0;
+            text-align: center;
+        }
+    }
 }
