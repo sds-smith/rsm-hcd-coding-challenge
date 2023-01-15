@@ -1,8 +1,8 @@
 # Discover Breweries
 
-** Version 2.0 available at [https://github.com/sds-smith/discover-breweries](https://github.com/sds-smith/discover-breweries) !! **
-
 A brewery locator app built for the [RSM HCD Coding Challenge](<https://rsm-hcd-coding-challenge.s3.amazonaws.com/requirements/RSM+HCD+Coding+Challenge+Instructions+(1).pdf>) and powered by the [OpenBreweryDB API](https://www.openbrewerydb.org/documentation).
+
+## ** Version 2.0 available at [https://github.com/sds-smith/discover-breweries](https://github.com/sds-smith/discover-breweries) !! **
 
 ## Primary Tech Stack
 
